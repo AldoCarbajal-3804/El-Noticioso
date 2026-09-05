@@ -1,0 +1,15 @@
+---
+interface Props{
+    title: string;
+    text: string;
+}
+
+const {title, text} = Astro.props as Props;
+---
+
+<blockquote class="rounded w-full shadow-xl bg-white p-4 border-neutral-gray-light border-2">
+
+    <h2 class="text-base sm:text-lg font-bold mb-2 font-subtitle">{title.toUpperCase()}</h2>
+    <p class="text-responsive-base font-body text-justify">{text}</p>
+
+</blockquote>

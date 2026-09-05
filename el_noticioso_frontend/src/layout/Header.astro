@@ -1,0 +1,29 @@
+---
+import "@/styles/global.css";
+import {Image} from 'astro:assets'
+import logo from '@/assets/logo-light_1.webp'
+---
+
+<header class="bg-neutral-white flex justify-between items-center px-8">
+
+    <picture>
+        <Image 
+            src={logo} 
+            width="200" 
+            height="170" 
+            alt="Logo" 
+            loading="lazy" 
+            decoding="async"
+        />
+    </picture>
+    
+    <h1 class="font-bold
+       hidden md:block text-3xl">EL NOTICIOSO</h1>
+
+    <menu class="flex flex-col md:flex-row gap-2 md:gap-2">
+        <button class="bg-cyan-900 text-white font-principal py-2 px-4 rounded hover:bg-cyan-700 duration-300 ease-in-out
+            text-responsive-base">Iniciar Sesión</button>
+        <button class="text-black font-principal py-2 px-4 rounded hover:underline
+            text-responsive-base">Registrarse</button>
+    </menu>
+</header>

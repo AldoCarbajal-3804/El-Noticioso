@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@tailwind utilities;
+
+@font-face{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/inter-latin-500-normal.woff') format('woff');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/noto-sans-georgian-latin-500-normal.woff2') format('woff');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face{
+    font-family: 'Literata';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/literata-latin-500-normal.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@theme {
+    --font-title: 'Inter', sans-serif;
+    --font-subtitle: 'Noto Sans', sans-serif;
+    --font-body: 'Literata', serif;
+
+    --text-huge-title: 2rem;
+    --text-mega-title: 1.75rem;
+    --text-title: 1.5rem;
+    --text-subtitle: 1.25rem;
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    
+    --color-neutral-gray-dark: #434343;
+    --color-neutral-gray-medium: #7b7b7b;
+    --color-neutral-gray-light: #E0E0E0;
+    --color-neutral-white: #FFFFFF;
+    --color-neutral-black: #262626;
+}
+
+@layer base{
+    html{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        background-color: var(--color-neutral-gray-light);
+        
+        button{
+            cursor: pointer;
+        }
+
+        color:var(--texto)
+    }
+}
+
+@layer utilities{
+    .text-responsive-base{
+        @apply text-sm md:text-base 
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root{
+        --texto: var(--color-neutral-gray-dark);
+    }
+}
