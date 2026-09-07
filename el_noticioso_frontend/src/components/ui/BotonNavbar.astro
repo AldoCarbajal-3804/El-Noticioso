@@ -1,0 +1,13 @@
+---
+interface Props {
+  href: string;
+  text: string;
+  isActive?: boolean;
+}
+
+const { href, text, isActive = false } = Astro.props as Props;
+---
+
+<button class=`text-neutral-white cursor-pointer p-4 ${isActive ? 'bg-neutral-gray-medium' : ''}`>
+    <a href={href}>{text}</a>
+</button>
