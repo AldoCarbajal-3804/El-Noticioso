@@ -1,18 +1,29 @@
 ---
-
+import ButtonNavbar from '../components/ui/BotonNavbar.astro';
 ---
 
 <nav class="bg-neutral-gray-dark">
 
-    <ul class="flex justify-between px-8 *:text-neutral-white 
-    *:cursor-pointer *:p-4 *:first:bg-neutral-gray-medium">
+    <ul class="flex justify-between px-8">
 
-        <li>Inicio</li>
-        <li>Local</li>
-        <li>Regional</li>
-        <li>Nacional</li>
-        <li>Internacional</li>
-        <li>Otros</li>
+        <li>
+            <ButtonNavbar href="/" text="Principal" isActive={true}/>
+        </li>
+        <li>
+            <ButtonNavbar href="/local" text="Local" />
+        </li>
+        <li>
+            <ButtonNavbar href="/regional" text="Regional" />
+        </li>
+        <li>
+            <ButtonNavbar href="/nacional" text="Nacional" />
+        </li>
+        <li>
+            <ButtonNavbar href="/internacional" text="Internacional" />
+        </li>
+        <li>
+            <ButtonNavbar href="/otros" text="Otros" />
+        </li>
 
     </ul>
 
