@@ -1,12 +1,14 @@
 
 import './App.css'
+import Header from '@/layouts/Header'
 
 function App() {
 
 
     return (
         <>
-            HOLA MUNDO
+            <Header />
+            <h1 className="text-3xl font-bold underline">HOLA MUNDO</h1>
         </>
     )
 }
