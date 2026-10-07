@@ -36,10 +36,10 @@ export const NavbarMobile = () => {
             >
                 <ul className="min-h-0 overflow-hidden">
                     <LinkNavbar href="/" text="Inicio" isActive={activeLink === '/'} />
-                    <LinkNavbar href="/noticias" text="Noticias" isActive={activeLink === '/noticias'} />
-                    <LinkNavbar href="/deportes" text="Deportes" isActive={activeLink === '/deportes'} />
-                    <LinkNavbar href="/entretenimiento" text="Entretenimiento" isActive={activeLink === '/entretenimiento'} />
-                    <LinkNavbar href="/tecnologia" text="Tecnología" isActive={activeLink === '/tecnologia'} />
+                    <LinkNavbar href="/local" text="Local" isActive={activeLink === '/local'} />
+                    <LinkNavbar href="/regional" text="Regional" isActive={activeLink === '/regional'} />
+                    <LinkNavbar href="/nacional" text="Nacional" isActive={activeLink === '/nacional'} />
+                    <LinkNavbar href="/otros" text="Otros" isActive={activeLink === '/otros'} />
                 </ul>
             </menu>
         </div>
