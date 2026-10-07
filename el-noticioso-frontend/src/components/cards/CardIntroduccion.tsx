@@ -1,0 +1,21 @@
+type Props = {
+    titulo: string,
+    contenido: string
+}
+
+export const CardIntroduccion = ({titulo, contenido}: Props) => {
+
+    return(
+        <blockquote className="bg-white shadow-xl rounded-lg p-6">
+            <h3 className="text-title font-bold pb-2
+                text-lg md:text-xl lg:text-2xl">
+                    {titulo}
+            </h3>
+            <p className="text-body text-justify
+                text-sm lg:text-base">
+                    {contenido}
+            </p>
+        </blockquote>
+    )
+
+}
