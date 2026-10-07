@@ -14,7 +14,7 @@ function Header(){
             />
 
             <h1 className='font-bold font-title text-second-dark
-                text-2xl md:text-3xl lg:text-4xl'>
+                hidden md:block md:text-3xl lg:text-4xl'>
                 EL NOTICIOSO
             </h1>
         
