@@ -34,6 +34,10 @@
     --color-third-nav: #3B3B3B;
 }
 
+body{
+    background-color: var(--color-second-light);
+}
+
 @layer components{
     button{
         cursor: pointer;
