@@ -17,8 +17,8 @@ export const LinkNavbar = ({ href, text, onClick: onClick, isActive=false }: Pro
          <li
             className={`cursor-pointer p-4 transition duration-300 ease-in-out ${
                 isActive
-                    ? 'bg-gray-500 text-white'
-                    : 'text-second-light hover:bg-gray-500 hover:text-gray-300'
+                    ? 'bg-unique-2 text-white'
+                    : 'text-second-light hover:bg-unique-2 hover:text-gray-300'
             }`}
         >
             <a
