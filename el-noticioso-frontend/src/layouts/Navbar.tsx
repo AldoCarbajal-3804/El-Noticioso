@@ -5,7 +5,7 @@ function Navbar() {
 
 
     return (
-        <nav className='bg-third-nav text-second-light'>
+        <nav className='bg-unique-1 text-second-light'>
             
             <div className='hidden md:block'>
                 <NavbarDesktop />
