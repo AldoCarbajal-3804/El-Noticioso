@@ -18,7 +18,7 @@ function Header(){
                 EL NOTICIOSO
             </h1>
         
-            <menu className='flex gap-8 font-body text-sm md:text-base'>
+            <menu className='flex gap-6 font-body text-sm md:text-base'>
                 <button className="bg-first-light text-second-light px-4 py-2 rounded-md 
                     transition delay-150 duration-300 ease-in-out hover:scale-110 hover:bg-cyan-700">
                     Iniciar Sesión
