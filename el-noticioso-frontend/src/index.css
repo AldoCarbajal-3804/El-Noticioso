@@ -31,7 +31,11 @@
     --color-second-light: #EBEBEB;
     --color-second-dark: #1E1E1E;
 
-    --color-third-nav: #3B3B3B;
+    --color-third-light: #F5F5F5;
+    --color-third-dark: #2E2E2E;
+
+    --color-unique-1: #3B3B3B;
+    --color-unique-2: #4a5565;
 }
 
 body{
@@ -39,7 +43,13 @@ body{
 }
 
 @layer components{
+    
     button{
         cursor: pointer;
     }
+
+    h1,h2,h3,p{
+        color: var(--color-second-dark);
+    }
+    
 }
