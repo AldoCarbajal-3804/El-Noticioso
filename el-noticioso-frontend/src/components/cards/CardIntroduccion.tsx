@@ -1,13 +1,7 @@
 import * as z from "zod"
+import { PropsIntroduccion } from "@/schemas/PropsIntroduccion";
 
-const PropsSchema = z.object({
-    titulo: z.string({error: "El título es requerido"})
-        .max(100, {error: "El título no puede superar los 100 caracteres"}),
-    contenido: z.string({error: "El contenido es requerido"})
-        .max(200, {error: "El contenido no puede superar los 200 caracteres"})
-});
-
-type Props = z.infer<typeof PropsSchema>;
+type Props = z.infer<typeof PropsIntroduccion>;
 
 export const CardIntroduccion = ({titulo, contenido}: Props) => {
 
