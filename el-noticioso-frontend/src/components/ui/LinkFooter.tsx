@@ -1,13 +1,7 @@
 import * as z from "zod"
+import { PropsFooter } from "@/schemas/ui/PropsFooter";
 
-const PropsSchema = z.object({
-    href: z.url({error: "La URL es requerida"}),
-    img: z.string({error : "La imagen es requerida"}),
-    description: z.string({error : "La descripcion esta incompleta"})
-        .max(50,{error:"La descripcion no puede superar los 50 caracteres"})
-})
-
-type Props = z.infer<typeof PropsSchema>;
+type Props = z.infer<typeof PropsFooter>;
 
 export const LinkFooter = ({href,img,description} : Props ) => {
 
