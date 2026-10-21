@@ -10,7 +10,7 @@ function Footer (){
 
         <footer className="bg-unique-1 flex flex-col md:flex-col lg:flex-row lg:justify-center md:px-15 lg:px-30 gap-5 items-center py-10">
 
-            <small className="text-second-light text-xs md:text-sm lg:text-base flex-1 text-center"> 
+            <small className="text-second-light text-xs md:text-sm lg:text-base flex-1 text-center lg:text-left"> 
                 © Copyright - 2026 
                 <br />
                 Todos los derechos reservados
