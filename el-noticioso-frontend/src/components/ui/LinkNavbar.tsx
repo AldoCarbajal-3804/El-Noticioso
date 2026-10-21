@@ -1,14 +1,7 @@
 import * as z from "zod"
+import { PropsNavbar } from "@/schemas/ui/PropsNavbar";
 
-const PropsSchema = z.object({
-    href: z.url({error: "La URL es requerida"}),
-    text: z.string({error: "El texto es requerido"})
-        .max(50, {error: "El texto no puede superar los 50 caracteres"}),
-    onClick: z.function().optional(),
-    isActive: z.boolean().optional()
-});
-
-type Props = z.infer<typeof PropsSchema>;
+type Props = z.infer<typeof PropsNavbar>;
 
 
 export const LinkNavbar = ({ href, text, onClick: onClick, isActive=false }: Props) => {
