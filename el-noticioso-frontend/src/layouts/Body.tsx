@@ -40,7 +40,8 @@ function Body() {
 
     return (
 
-        <main className="px-0 md:px-15 lg:px-30">
+        <main className="px-0 lg:px-20">
+            
             <section className="flex flex-col md:flex-row items-center justify-center gap-6 px-6 pb-6
                 bg-white">
                 <CardIntroduccion 
@@ -95,7 +96,7 @@ function Body() {
                         />
                     </article>
                     
-                    <aside className="flex flex-col gap-6 sticky w-full self-start rounded-lg bg-white p-6 shadow-lg md:w-1/3">
+                    <aside className="flex flex-col gap-6 sticky top-6 w-full self-start rounded-lg bg-white p-6 shadow-lg md:w-1/3">
                         <h2 className="font-bold
                             text-lg md:text-xl lg:text-2xl">
                                 NOTICIAS EXTRAS
