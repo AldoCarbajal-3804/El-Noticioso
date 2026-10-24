@@ -5,18 +5,11 @@ import dark from '@/assets/icons/dark.svg'
 
 export const ButtonTheme = () => {
     
-    const { theme, changeTheme } = useTheme();
+    const theme = useTheme((state) => state.theme);
+    const changeTheme = useTheme((state) => state.changeTheme);
 
-     useEffect(() => {
-        const root = document.documentElement;
-
-        root.setAttribute('data-theme', theme);
-
-        if (theme === 'dark') {
-            root.classList.add('dark');
-        } else {
-            root.classList.remove('dark');
-        }
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
     
     return (
@@ -24,7 +17,7 @@ export const ButtonTheme = () => {
             type="button"
             onClick={changeTheme}
             className={`grid size-10 place-items-center rounded-full transition-colors sm:size-10 md:size-11 lg:size-12 ${
-                theme=='light' ? 'bg-first-light hover:bg-first-dark' : 'bg-second-light'
+                theme=='light' ? 'bg-first' : 'bg-fifth'
             }`}
         >
             <img

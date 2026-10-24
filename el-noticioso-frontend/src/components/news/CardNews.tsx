@@ -7,10 +7,10 @@ type Props = z.infer<typeof PropsNews>;
 export const CardNews = ({uuid, titulo, resumen, urlImagen, autor, fecha}: Props) => {
 
     return(
-        <article id={uuid} className="bg-white shadow-xl rounded-lg p-6">
+        <article id={uuid} className="bg-seventh shadow-xl rounded-lg p-6">
             
             <header className="flex justify-between items-center mb-4">
-                <h3 className="text-title font-bold pb-2
+                <h3 className="font-bold pb-2 text-third
                     text-lg md:text-xl lg:text-2xl">
                         {titulo}
                 </h3>
@@ -25,7 +25,7 @@ export const CardNews = ({uuid, titulo, resumen, urlImagen, autor, fecha}: Props
             </header>
             
             <div>
-                <p className="text-body text-justify leading-relaxed
+                <p className="text-justify leading-relaxed text-third
                 text-sm lg:text-base">
                     {resumen}
                 </p>
@@ -33,10 +33,10 @@ export const CardNews = ({uuid, titulo, resumen, urlImagen, autor, fecha}: Props
             </div>
             
             <footer className="flex justify-between items-center mt-4">        
-                <p className="text-body text-sm lg:text-base">
+                <p className="text-sm lg:text-base text-third">
                     <span className="font-bold">Autor:</span> {autor}
                 </p>
-                <time className="text-body text-sm lg:text-base">
+                <time className="text-sm lg:text-base text-third">
                     <span className="font-bold">Fecha:</span> {fecha.toLocaleDateString()}
                 </time>
             </footer>
