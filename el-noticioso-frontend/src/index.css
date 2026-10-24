@@ -26,19 +26,17 @@
     --font-body: "Vend Sans", sans-serif;
 
     --color-first: #30576e;
+    --color-second: #EBEBEB;
+    --color-third: #1C1C1C;
+    --color-fourth: #3b3b3b;
+    --color-fifth: #4a5565;
+    --color-sixth: #fff;
+    --color-seventh: #F7F7F7;
 
-    --color-second-light: #EBEBEB;
-    --color-second-dark: #1E1E1E;
-
-    --color-third-light: #F5F5F5;
-    --color-third-dark: #2E2E2E;
-
-    --color-unique-1: #3B3B3B;
-    --color-unique-2: #4a5565;
 }
 
 body{
-    background-color: var(--color-second-light);
+    background-color: var(--color-second);
 }
 
 @layer components{
@@ -47,8 +45,21 @@ body{
         cursor: pointer;
     }
 
-    h1,h2,h3,p{
-        color: var(--color-second-dark);
+    h1,h2,h3{
+        font-family: var(--font-title);
     }
     
+    p,small,time,span{
+        font-family: var(--font-body);
+    }
+}
+
+[data-theme="dark"] {
+    --color-first: #427796;
+    --color-second: #2e2d2d;
+    --color-third: #d1d1d1;
+    --color-fourth: #1e1e1e;
+    --color-fifth: #3d4a5f;
+    --color-sixth: #3d3d3d;
+    --color-seventh: #2b2b2b;
 }
