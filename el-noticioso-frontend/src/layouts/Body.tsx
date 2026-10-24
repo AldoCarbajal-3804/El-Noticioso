@@ -42,8 +42,7 @@ function Body() {
 
         <main className="px-0 lg:px-20">
             
-            <section className="flex flex-col md:flex-row items-center justify-center gap-6 px-6 pb-6
-                bg-white">
+            <section className="flex flex-col md:flex-row items-center justify-center gap-6 px-6 py-6 bg-sixth">
                 <CardIntroduccion 
                     titulo="Bienvenido al Noticioso" 
                     contenido="Este es un espacio para encontrar noticias de actualidad, siempre con la mejor información y veracidad, para que puedas estar al tanto de lo que sucede en el mundo." 
@@ -54,11 +53,11 @@ function Body() {
                 />
             </section>
             
-            <section className="bg-white px-6">
+            <section className="px-6 py-6 bg-sixth">
                 
                 <div className="flex flex-col items-start gap-6 md:flex-row">
                     <article className="flex flex-col gap-6 w-full md:w-2/3">
-                        <h2 className="font-bold pb-6
+                        <h2 className="font-bold pb-6 text-third
                             text-lg md:text-xl lg:text-2xl">
                                 NOTICIAS - {activeLink !== '/' ? activeLink.slice(1).toUpperCase() : 'INICIO'}
                         </h2>
@@ -96,8 +95,8 @@ function Body() {
                         />
                     </article>
                     
-                    <aside className="flex flex-col gap-6 sticky top-6 w-full self-start rounded-lg bg-white p-6 shadow-lg md:w-1/3">
-                        <h2 className="font-bold
+                    <aside className="flex flex-col gap-6 sticky top-6 w-full self-start rounded-lg bg-seventh p-6 shadow-lg md:w-1/3">
+                        <h2 className="font-bold text-third
                             text-lg md:text-xl lg:text-2xl">
                                 NOTICIAS EXTRAS
                         </h2>

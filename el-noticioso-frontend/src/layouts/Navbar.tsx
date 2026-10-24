@@ -5,15 +5,13 @@ function Navbar() {
 
 
     return (
-        <nav className='bg-unique-1 text-second-light'>
-            
+        <nav className='bg-fourth text-white'>
             <div className='hidden md:block'>
                 <NavbarDesktop />
             </div>
             <div className='block md:hidden'>
                 <NavbarMobile />
             </div>
-            
         </nav>
     )
 
