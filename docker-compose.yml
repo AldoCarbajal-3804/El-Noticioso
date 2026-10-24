@@ -1,0 +1,9 @@
+services:
+  frontend:
+    container_name: el_noticioso_frontend_app
+    build:
+      context: ./el-noticioso-frontend
+      dockerfile: Dockerfile
+    image: el-noticioso-frontend:latest
+    ports:
+      - "8080:80"
