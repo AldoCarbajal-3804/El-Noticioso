@@ -8,6 +8,7 @@ public class ElNoticiosoBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ElNoticiosoBackendApplication.class, args);
+		System.out.println("HOLA MUNDO");
 	}
 
 }
