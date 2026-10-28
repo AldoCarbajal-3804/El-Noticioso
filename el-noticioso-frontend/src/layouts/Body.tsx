@@ -6,14 +6,28 @@ import { CardAside } from "@/components/news/CardAside";
 import { PropsAside } from "@/schemas/PropsAside";
 import { SpinnerLoad } from "@/components/ui/SpinnerLoad";
 import ServiceNews from "@/services/apis-externals/ServiceNews";
+import NoticiaService from "@/services/apis-locals/NoticiaService";
 
 type AsideArticle = z.infer<typeof PropsAside>;
+
+type MainNews = {
+    uuid: string;
+    titulo: string;
+    descripcion: string;
+    resumen: string;
+    urlImagen: string;
+    autor: string;
+    fecha: Date;
+};
 
 function Body() {
     const activeLink = window.location.pathname
     const [asideNews, setAsideNews] = useState<AsideArticle[]>([]);
+    const [mainNews, setMainNews] = useState<MainNews[]>([]);
     const [isAsideLoading, setIsAsideLoading] = useState(true);
+    const [isMainNewsLoading, setIsMainNewsLoading] = useState(true);
     const [asideError, setAsideError] = useState<string | null>(null);
+    const [mainNewsError, setMainNewsError] = useState<string | null>(null);
 
     useEffect(() => {
         let isMounted = true;
@@ -38,6 +52,40 @@ function Body() {
         };
     }, []);
 
+    useEffect(() => {
+        let isMounted = true;
+
+        const loadMainNews = async () => {
+            try {
+                const noticias = await NoticiaService().getNoticias();
+
+                const mappedNews = noticias.map((noticia) => ({
+                    uuid: String(noticia.id),
+                    titulo: noticia.titulo,
+                    descripcion: noticia.descripcion,
+                    resumen: noticia.resumen,
+                    urlImagen: noticia.imagen,
+                    autor: noticia.autor,
+                    fecha: new Date(noticia.fecha),
+                }));
+
+                if (isMounted) setMainNews(mappedNews);
+            } catch (error) {
+                if (isMounted) {
+                    setMainNewsError(error instanceof Error ? error.message : "No se pudieron cargar las noticias principales.");
+                }
+            } finally {
+                if (isMounted) setIsMainNewsLoading(false);
+            }
+        };
+
+        void loadMainNews();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+    
     return (
 
         <main className="px-0 lg:px-20">
@@ -61,38 +109,23 @@ function Body() {
                             text-lg md:text-xl lg:text-2xl">
                                 NOTICIAS - {activeLink !== '/' ? activeLink.slice(1).toUpperCase() : 'INICIO'}
                         </h2>
-                        <CardNews 
-                            uuid="123e4567-e89b-12d3-a456-426614174000"
-                            titulo="Noticia 1" 
-                            resumen="Resumen de la noticia 1"
-                            urlImagen="https://via.placeholder.com/150"
-                            autor="Autor 1"
-                            fecha={new Date("2023-01-01")}
-                        />
-                        <CardNews 
-                            uuid="123e4567-e89b-12d3-a456-426614174001"
-                            titulo="Noticia 2" 
-                            resumen="Resumen de la noticia 2"
-                            urlImagen="https://via.placeholder.com/150"
-                            autor="Autor 2"
-                            fecha={new Date("2023-01-02")}
-                        />
-                        <CardNews 
-                            uuid="123e4567-e89b-12d3-a456-426614174001"
-                            titulo="Noticia 2" 
-                            resumen="Resumen de la noticia 2"
-                            urlImagen="https://via.placeholder.com/150"
-                            autor="Autor 2"
-                            fecha={new Date("2023-01-02")}
-                        />
-                        <CardNews 
-                            uuid="123e4567-e89b-12d3-a456-426614174001"
-                            titulo="Noticia 2" 
-                            resumen="Resumen de la noticia 2"
-                            urlImagen="https://via.placeholder.com/150"
-                            autor="Autor 2"
-                            fecha={new Date("2023-01-02")}
-                        />
+                        {isMainNewsLoading && <SpinnerLoad />}
+                        {mainNewsError && <p role="alert">{mainNewsError}</p>}
+                        {!isMainNewsLoading && !mainNewsError && mainNews.length === 0 && (
+                            <p>No hay noticias disponibles.</p>
+                        )}
+                        {mainNews.map((noticia) => (
+                            <CardNews
+                                key={noticia.uuid}
+                                uuid={noticia.uuid}
+                                titulo={noticia.titulo}
+                                descripcion={noticia.descripcion}
+                                resumen={noticia.resumen}
+                                urlImagen={noticia.urlImagen}
+                                autor={noticia.autor}
+                                fecha={noticia.fecha}
+                            />
+                        ))}
                     </article>
                     
                     <aside className="flex flex-col gap-6 sticky top-6 w-full self-start rounded-lg bg-seventh p-6 shadow-lg md:w-1/3">

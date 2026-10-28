@@ -4,8 +4,10 @@ export const PropsNews = z.object({
     uuid: z.uuid({error: "El UUID es requerido"}),
     titulo: z.string({error: "El título es requerido"})
         .max(100, {error: "El título no puede superar los 100 caracteres"}),
+    descripcion: z.string({error: "La descripcion es requerido"})
+        .max(200, {error: "La descripcion no puede superar los 200 caracteres"}),
     resumen: z.string({error: "El resumen es requerido"})
-        .max(200, {error: "El resumen no puede superar los 200 caracteres"}),
+        .max(500, {error: "El resumen no puede superar los 500 caracteres"}),
     urlImagen: z.url({error: "La URL de la imagen es requerida"}),
     autor: z.string({error: "El autor es requerido"})
         .max(50, {error: "El autor no puede superar los 50 caracteres"}),
