@@ -1,6 +1,5 @@
 package com.example.el_noticioso_backend.services;
 
-import com.example.el_noticioso_backend.dto.in.CambioContrasenaRequest;
 import com.example.el_noticioso_backend.dto.in.PerfilRequest;
 import com.example.el_noticioso_backend.dto.in.RegistroAdminRequest;
 import com.example.el_noticioso_backend.dto.in.RegistroRequest;
@@ -22,24 +21,6 @@ public class UsuarioService {
     @Autowired
     private IdentidadDbService identidad;
 
-    /** Registro público (sin sesión). El procedimiento asigna el rol USUARIO. */
-    @Transactional
-    public RegistroResponse registrarUsuario(RegistroRequest request) {
-        try {
-            usuarioJPA.registrarUsuario(
-                    request.nombre(),
-                    request.apellidos(),
-                    request.telefono(),
-                    request.usuario(),
-                    request.correo(),
-                    request.contrasena()
-            );
-        } catch (RuntimeException e) {
-            throw ErrorDeNegocioException.desdeBaseDeDatos(e);
-        }
-        return aRespuesta(obtenerPorCorreo(request.correo()));
-    }
-
     /** Perfil del usuario autenticado. */
     @Transactional(readOnly = true)
     public RegistroResponse obtenerPerfil(UsuarioAutenticado usuario) {
@@ -58,17 +39,6 @@ public class UsuarioService {
                     request.telefono(),
                     request.usuario()
             );
-        } catch (RuntimeException e) {
-            throw ErrorDeNegocioException.desdeBaseDeDatos(e);
-        }
-    }
-
-    /** Cambia la contraseña del propio usuario. */
-    @Transactional
-    public void cambiarContrasena(UsuarioAutenticado usuario, CambioContrasenaRequest request) {
-        identidad.aplicar(usuario);
-        try {
-            usuarioJPA.actualizarContrasenaUser(usuario.correo(), request.nuevaContrasena());
         } catch (RuntimeException e) {
             throw ErrorDeNegocioException.desdeBaseDeDatos(e);
         }

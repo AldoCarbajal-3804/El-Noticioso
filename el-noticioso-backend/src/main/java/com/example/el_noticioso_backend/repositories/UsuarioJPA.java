@@ -47,10 +47,4 @@ public interface UsuarioJPA extends JpaRepository<Usuario,Long> {
             @Param("p_nuevo_usuario") String nuevoUsuario
     );
 
-    @Procedure(procedureName = "actualizar_contrasena_user")
-    void actualizarContrasenaUser(
-            @Param("p_correo") String correo,
-            @Param("p_nueva_contrasena") String nuevaContrasena
-    );
-
 }
