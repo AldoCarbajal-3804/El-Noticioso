@@ -18,6 +18,9 @@ RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
 # Copiar el resto del código fuente
 COPY . .
 
+ARG VITE_LINK_API
+ENV VITE_LINK_API=$VITE_LINK_API
+
 # Compilar la aplicación de React (genera la carpeta 'dist' o 'build')
 RUN pnpm build
 
