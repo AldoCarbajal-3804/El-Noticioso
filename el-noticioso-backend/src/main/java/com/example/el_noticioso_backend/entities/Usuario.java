@@ -27,6 +27,8 @@ public class Usuario {
 
     private String contrasena;
 
+    private String usuario;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name  = "id_rol", nullable = false)
     private Rol rol;
