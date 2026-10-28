@@ -1,4 +1,4 @@
-package com.example.el_noticioso_backend.services;
+package com.example.el_noticioso_backend.dto.out;
 
 import java.util.UUID;
 
