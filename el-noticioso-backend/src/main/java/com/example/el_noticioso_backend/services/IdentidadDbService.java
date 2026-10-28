@@ -1,5 +1,6 @@
 package com.example.el_noticioso_backend.services;
 
+import com.example.el_noticioso_backend.dto.out.UsuarioAutenticado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;

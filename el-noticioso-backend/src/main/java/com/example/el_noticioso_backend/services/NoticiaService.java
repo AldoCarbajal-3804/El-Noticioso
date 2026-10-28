@@ -2,9 +2,12 @@ package com.example.el_noticioso_backend.services;
 
 import com.example.el_noticioso_backend.dto.in.NoticiaRequest;
 import com.example.el_noticioso_backend.dto.out.NoticiaResponse;
+import com.example.el_noticioso_backend.dto.out.UsuarioAutenticado;
 import com.example.el_noticioso_backend.entities.enums.CategoriaEnum;
 import com.example.el_noticioso_backend.entities.enums.UbicacionEnum;
 import com.example.el_noticioso_backend.entities.views.NoticiaView;
+import com.example.el_noticioso_backend.exceptions.AccesoDenegadoException;
+import com.example.el_noticioso_backend.exceptions.ErrorDeNegocioException;
 import com.example.el_noticioso_backend.repositories.NoticiaJPA;
 import com.example.el_noticioso_backend.repositories.NoticiaViewJPA;
 import org.springframework.beans.factory.annotation.Autowired;

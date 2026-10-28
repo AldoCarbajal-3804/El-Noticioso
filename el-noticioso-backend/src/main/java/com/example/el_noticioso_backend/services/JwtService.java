@@ -1,5 +1,7 @@
 package com.example.el_noticioso_backend.services;
 
+import com.example.el_noticioso_backend.dto.out.UsuarioAutenticado;
+import com.example.el_noticioso_backend.exceptions.TokenInvalidoException;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.jwk.source.JWKSource;

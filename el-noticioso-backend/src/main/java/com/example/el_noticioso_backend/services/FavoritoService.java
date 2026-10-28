@@ -2,9 +2,11 @@ package com.example.el_noticioso_backend.services;
 
 import com.example.el_noticioso_backend.dto.in.FavoritoRequest;
 import com.example.el_noticioso_backend.dto.out.FavoritoResponse;
+import com.example.el_noticioso_backend.dto.out.UsuarioAutenticado;
 import com.example.el_noticioso_backend.entities.Usuario;
 import com.example.el_noticioso_backend.entities.enums.CategoriaEnum;
 import com.example.el_noticioso_backend.entities.enums.UbicacionEnum;
+import com.example.el_noticioso_backend.exceptions.ErrorDeNegocioException;
 import com.example.el_noticioso_backend.repositories.FavoritoJPA;
 import com.example.el_noticioso_backend.repositories.UsuarioJPA;
 import org.springframework.beans.factory.annotation.Autowired;
