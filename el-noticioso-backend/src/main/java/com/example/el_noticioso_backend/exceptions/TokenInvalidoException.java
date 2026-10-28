@@ -1,4 +1,4 @@
-package com.example.el_noticioso_backend.services;
+package com.example.el_noticioso_backend.exceptions;
 
 /** El JWT no es válido, está expirado o no pertenece a un usuario autenticado. */
 public class TokenInvalidoException extends RuntimeException {

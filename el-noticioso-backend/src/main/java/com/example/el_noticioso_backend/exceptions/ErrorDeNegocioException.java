@@ -1,4 +1,4 @@
-package com.example.el_noticioso_backend.services;
+package com.example.el_noticioso_backend.exceptions;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
