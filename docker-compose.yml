@@ -7,3 +7,13 @@ services:
     image: el-noticioso-frontend:latest
     ports:
       - "8080:80"
+  backend:
+    container_name: el_noticioso_backend_app
+    build:
+      context: ./el-noticioso-backend
+      dockerfile: Dockerfile
+    image: el-noticioso-backend:latest
+    env_file:
+      - ./el-noticioso-backend/.env
+    ports:
+      - "8081:8080"
