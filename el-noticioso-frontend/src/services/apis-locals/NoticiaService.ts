@@ -15,7 +15,7 @@ type Noticia = z.infer<typeof ListNoticiasResponse>[number];
 
 function NoticiaService(){
 
-    const VITE_API_LOCAL  = import.meta.env.VITE_API_LOCAL
+    const VITE_API_LOCAL  = `${import.meta.env.VITE_API_LOCAL}/noticias`
 
     async function getNoticias(): Promise<Noticia[]> {
         if (!VITE_API_LOCAL) {
