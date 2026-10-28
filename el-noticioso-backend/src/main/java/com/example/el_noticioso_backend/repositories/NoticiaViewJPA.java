@@ -12,14 +12,15 @@ import java.util.List;
 public interface NoticiaViewJPA extends JpaRepository<NoticiaView, Long> {
 
     // Listado completo: usar findAll(). Este método solo aplica filtros opcionales.
-    @Query("SELECT n FROM NoticiaView n WHERE " +
-            "(:categoria IS NULL OR UPPER(n.categoria) = UPPER(:categoria)) AND " +
-            "(:ubicacion IS NULL OR UPPER(n.ubicacion) = UPPER(:ubicacion)) AND " +
-            "(:busqueda IS NULL OR LOWER(n.titulo) LIKE LOWER(CONCAT('%', :busqueda, '%')))")
-    List<NoticiaView> filtrarNoticias(
-            @Param("categoria") String categoria,
-            @Param("ubicacion") String ubicacion,
-            @Param("busqueda") String busqueda
-    );
+    @Query(value = "SELECT * FROM v_noticias n WHERE " +
+        "(CAST(:categoria AS text) IS NULL OR UPPER(CAST(n.categoria AS text)) = UPPER(CAST(:categoria AS text))) AND " +
+        "(CAST(:ubicacion AS text) IS NULL OR UPPER(CAST(n.ubicacion AS text)) = UPPER(CAST(:ubicacion AS text))) AND " +
+        "(CAST(:busqueda AS text) IS NULL OR LOWER(n.titulo) LIKE LOWER(CONCAT('%', CAST(:busqueda AS text), '%')))",
+        nativeQuery = true)
+        List<NoticiaView> filtrarNoticias(
+                @Param("categoria") String categoria,
+                @Param("ubicacion") String ubicacion,
+                @Param("busqueda") String busqueda
+        );
 
 }
