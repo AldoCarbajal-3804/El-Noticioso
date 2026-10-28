@@ -5,6 +5,8 @@ services:
       context: ./el-noticioso-frontend
       dockerfile: Dockerfile
     image: el-noticioso-frontend:latest
+    env_file:
+      - ./el-noticioso-frontend/.env
     ports:
       - "8080:80"
   backend:
