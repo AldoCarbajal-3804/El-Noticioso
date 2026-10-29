@@ -1,91 +1,30 @@
-import { useEffect, useState } from "react";
 import * as z from "zod";
 import { CardIntroduccion } from "@/components/cards/CardIntroduccion";
 import { CardNews } from "@/components/news/CardNews";
 import { CardAside } from "@/components/news/CardAside";
 import { PropsAside } from "@/schemas/props/PropsAside";
+import type { Noticia } from "@/schemas/data/Noticias";
 import { SpinnerLoad } from "@/components/ui/SpinnerLoad";
 import ServiceNews from "@/services/apis-externals/ServiceNews";
 import NoticiaService from "@/services/apis-locals/NoticiaService";
+import useFetch from "@/hooks/useFetch";
 
 type AsideArticle = z.infer<typeof PropsAside>;
 
-type MainNews = {
-    uuid: string;
-    titulo: string;
-    descripcion: string;
-    resumen: string;
-    urlImagen: string;
-    autor: string;
-    fecha: Date;
-};
+// Definidas fuera del componente para que sean estables entre renders
+const obtenerNoticiasAside = (): Promise<AsideArticle[]> => ServiceNews().getNewsAside();
+
+const obtenerNoticiasPrincipales = (): Promise<Noticia[]> => NoticiaService().getNoticias();
 
 function Body() {
-    const activeLink = window.location.pathname
-    const [asideNews, setAsideNews] = useState<AsideArticle[]>([]);
-    const [mainNews, setMainNews] = useState<MainNews[]>([]);
-    const [isAsideLoading, setIsAsideLoading] = useState(true);
-    const [isMainNewsLoading, setIsMainNewsLoading] = useState(true);
-    const [asideError, setAsideError] = useState<string | null>(null);
-    const [mainNewsError, setMainNewsError] = useState<string | null>(null);
+    const activeLink = window.location.pathname;
 
-    useEffect(() => {
-        let isMounted = true;
+    const aside = useFetch(obtenerNoticiasAside, "No se pudieron cargar las noticias.");
+    const principal = useFetch(obtenerNoticiasPrincipales, "No se pudieron cargar las noticias principales.");
 
-        const loadAsideNews = async () => {
-            try {
-                const articles = await ServiceNews().getNewsAside();
-                if (isMounted) setAsideNews(articles);
-            } catch (error) {
-                if (isMounted) {
-                    setAsideError(error instanceof Error ? error.message : "No se pudieron cargar las noticias.");
-                }
-            } finally {
-                if (isMounted) setIsAsideLoading(false);
-            }
-        };
+    const asideNews = aside.data ?? [];
+    const mainNews = principal.data ?? [];
 
-        void loadAsideNews();
-
-        return () => {
-            isMounted = false;
-        };
-    }, []);
-
-    useEffect(() => {
-        let isMounted = true;
-
-        const loadMainNews = async () => {
-            try {
-                const noticias = await NoticiaService().getNoticias();
-
-                const mappedNews = noticias.map((noticia) => ({
-                    uuid: String(noticia.id),
-                    titulo: noticia.titulo,
-                    descripcion: noticia.descripcion,
-                    resumen: noticia.resumen,
-                    urlImagen: noticia.imagen,
-                    autor: noticia.autor,
-                    fecha: new Date(noticia.fecha),
-                }));
-
-                if (isMounted) setMainNews(mappedNews);
-            } catch (error) {
-                if (isMounted) {
-                    setMainNewsError(error instanceof Error ? error.message : "No se pudieron cargar las noticias principales.");
-                }
-            } finally {
-                if (isMounted) setIsMainNewsLoading(false);
-            }
-        };
-
-        void loadMainNews();
-
-        return () => {
-            isMounted = false;
-        };
-    }, []);
-    
     return (
 
         <main className="px-0 lg:px-20">
@@ -109,9 +48,9 @@ function Body() {
                             text-lg md:text-xl lg:text-2xl">
                                 NOTICIAS - {activeLink !== '/' ? activeLink.slice(1).toUpperCase() : 'INICIO'}
                         </h2>
-                        {isMainNewsLoading && <SpinnerLoad />}
-                        {mainNewsError && <p role="alert">{mainNewsError}</p>}
-                        {!isMainNewsLoading && !mainNewsError && mainNews.length === 0 && (
+                        {principal.cargando && <SpinnerLoad />}
+                        {principal.error && <p role="alert">{principal.error}</p>}
+                        {!principal.cargando && !principal.error && mainNews.length === 0 && (
                             <p>No hay noticias disponibles.</p>
                         )}
                         {mainNews.map((noticia) => (
@@ -133,11 +72,11 @@ function Body() {
                             text-lg md:text-xl lg:text-2xl">
                                 NOTICIAS EXTRAS
                         </h2>
-                        {isAsideLoading && 
+                        {aside.cargando && 
                             <SpinnerLoad />
                         }
-                        {asideError && <p role="alert">{asideError}</p>}
-                        {!isAsideLoading && !asideError && asideNews.length === 0 && (
+                        {aside.error && <p role="alert">{aside.error}</p>}
+                        {!aside.cargando && !aside.error && asideNews.length === 0 && (
                             <p>No hay noticias disponibles.</p>
                         )}
                         {asideNews.map((article) => (

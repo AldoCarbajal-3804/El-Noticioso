@@ -1,11 +1,15 @@
-
 import logoLight from '@/assets/logos/logolight.webp'
 import logoDark from '@/assets/logos/logodark.webp'
 import { useTheme } from '@/store/theme';
+import { useLogin } from '@/store/login';
+import Login from '@/components/popups/Login';
+import Register from '@/components/popups/Register';
+import MenuUsuario from '@/components/ui/MenuUsuario';
 
 function Header(){
 
     const theme = useTheme((state) => state.theme);
+    const usuario = useLogin((state) => state.usuario);
 
     return (
         
@@ -21,13 +25,15 @@ function Header(){
                 EL NOTICIOSO
             </h1>
         
-            <menu className='flex gap-6 font-body text-sm md:text-base'>
-                <button className="bg-first text-white px-4 py-2 rounded-md">
-                    Iniciar Sesión
-                </button>
-                <button className="underline text-third">
-                    Registrarse
-                </button>
+            <menu className='flex items-center gap-6 font-body text-sm md:text-base'>
+                {usuario ? (
+                    <MenuUsuario />
+                ) : (
+                    <>
+                        <Login />
+                        <Register />
+                    </>
+                )}
             </menu>
         </header>
 
