@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { PropsIntroduccion } from "@/schemas/PropsIntroduccion";
+import { PropsIntroduccion } from "@/schemas/props/PropsIntroduccion";
 
 type Props = z.infer<typeof PropsIntroduccion>;
 

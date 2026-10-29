@@ -1,6 +1,6 @@
 
 import { z } from "zod";
-import { PropsAside } from "@/schemas/PropsAside";
+import { PropsAside } from "@/schemas/props/PropsAside";
 
 type Props = z.infer<typeof PropsAside>;
 

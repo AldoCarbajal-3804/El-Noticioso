@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { PropsNavbar } from "@/schemas/ui/PropsNavbar";
+import { PropsNavbar } from "@/schemas/props/ui/PropsNavbar";
 import { useTheme } from "@/store/theme";
 
 type Props = z.infer<typeof PropsNavbar>;

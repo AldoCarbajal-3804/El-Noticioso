@@ -1,6 +1,6 @@
 import * as z from "zod"
 //import save from "@/assets/icons/save.svg"
-import { PropsNews } from "@/schemas/PropsNews";
+import { PropsNews } from "@/schemas/props/PropsNews";
 
 type Props = z.infer<typeof PropsNews>;
 

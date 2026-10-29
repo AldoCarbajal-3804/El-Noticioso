@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { PropsFooter } from "@/schemas/ui/PropsFooter";
+import { PropsFooter } from "@/schemas/props/ui/PropsFooter";
 
 type Props = z.infer<typeof PropsFooter>;
 

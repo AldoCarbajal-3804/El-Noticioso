@@ -3,7 +3,7 @@ import * as z from "zod";
 import { CardIntroduccion } from "@/components/cards/CardIntroduccion";
 import { CardNews } from "@/components/news/CardNews";
 import { CardAside } from "@/components/news/CardAside";
-import { PropsAside } from "@/schemas/PropsAside";
+import { PropsAside } from "@/schemas/props/PropsAside";
 import { SpinnerLoad } from "@/components/ui/SpinnerLoad";
 import ServiceNews from "@/services/apis-externals/ServiceNews";
 import NoticiaService from "@/services/apis-locals/NoticiaService";

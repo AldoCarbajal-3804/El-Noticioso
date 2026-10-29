@@ -1,4 +1,4 @@
-import { PropsAside } from "@/schemas/PropsAside";
+import { PropsAside } from "@/schemas/props/PropsAside";
 import { z } from "zod";
 
 
