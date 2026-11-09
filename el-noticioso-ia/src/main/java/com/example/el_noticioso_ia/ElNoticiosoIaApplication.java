@@ -8,6 +8,7 @@ public class ElNoticiosoIaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ElNoticiosoIaApplication.class, args);
+
 	}
 
 }
