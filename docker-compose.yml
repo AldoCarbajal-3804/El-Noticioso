@@ -1,21 +1,48 @@
 services:
+  gateway:
+    image: caddy:2
+    container_name: el_noticioso_gateway
+    ports:
+      - "8081:80"
+    volumes:
+      - ./Caddyfile.local:/etc/caddy/Caddyfile:ro
+    depends_on:
+      - backend
+      - efemerides
+    restart: unless-stopped
+
   frontend:
-    container_name: el_noticioso_frontend_app
     build:
       context: ./el-noticioso-frontend
       dockerfile: Dockerfile
     image: el-noticioso-frontend:latest
-    env_file:
-      - ./el-noticioso-frontend/.env
+    container_name: el_noticioso_frontend_app
     ports:
       - "8080:80"
+    depends_on:
+      - gateway
+    restart: unless-stopped
+
   backend:
-    container_name: el_noticioso_backend_app
     build:
       context: ./el-noticioso-backend
       dockerfile: Dockerfile
     image: el-noticioso-backend:latest
+    container_name: el_noticioso_backend_app
     env_file:
       - ./el-noticioso-backend/.env
-    ports:
-      - "8081:8080"
+    expose:
+      - "8080"
+    restart: unless-stopped
+
+  efemerides:
+    build:
+      context: ./el-noticioso-ia
+      dockerfile: Dockerfile
+    image: el-noticioso-ia:latest
+    container_name: el_noticioso_ia_app
+    env_file:
+      - ./el-noticioso-ia/.env
+    expose:
+      - "8000"
+    restart: unless-stopped
