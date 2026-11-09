@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
-import java.util.Objects;
 
 @RestController
 public class ControllerAI {
@@ -21,13 +20,21 @@ public class ControllerAI {
         this.prompt = prompt;
     }
 
-    @GetMapping("/ai/generate")
+    // La ruta debe coincidir con la que reenvía el gateway (/api/efemerides)
+    @GetMapping("/api/efemerides")
     @Cacheable(
             value = "efemerides",
             key = "T(java.time.LocalDateTime).now(T(java.time.ZoneId).of('America/Lima')).minusHours(12).toLocalDate()",
             sync = true
     )
     public Map<String, String> generate() {
-        return Map.of("generation", Objects.requireNonNull(chatModel.call(prompt)));
+        String texto = chatModel.call(prompt);
+
+        // Si la respuesta está vacía, se lanza una excepción: así no se guarda en caché
+        if (texto == null || texto.isBlank()) {
+            throw new IllegalStateException("La IA devolvió una respuesta vacía");
+        }
+
+        return Map.of("generation", texto);
     }
 }
