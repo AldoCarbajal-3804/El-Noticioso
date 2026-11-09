@@ -1,0 +1,23 @@
+:80 {
+    header {
+        Access-Control-Allow-Origin "http://localhost:8080"
+        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+        Access-Control-Allow-Headers "Authorization, Content-Type"
+        Access-Control-Max-Age "3600"
+    }
+
+    @preflight method OPTIONS
+    respond @preflight 204
+
+    handle /api/efemerides* {
+        reverse_proxy efemerides:8000
+    }
+
+    handle /api/* {
+        reverse_proxy backend:8080
+    }
+
+    handle {
+        respond "No encontrado" 404
+    }
+}
