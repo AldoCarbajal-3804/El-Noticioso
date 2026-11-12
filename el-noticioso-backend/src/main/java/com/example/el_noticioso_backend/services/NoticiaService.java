@@ -11,6 +11,8 @@ import com.example.el_noticioso_backend.exceptions.ErrorDeNegocioException;
 import com.example.el_noticioso_backend.repositories.NoticiaJPA;
 import com.example.el_noticioso_backend.repositories.NoticiaViewJPA;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,7 @@ public class NoticiaService {
     private IdentidadDbService identidad;
 
     /** Listado público con filtros opcionales. Ordenado por fecha, más reciente primero. */
+    @Cacheable(value = "noticias", sync = true)
     @Transactional(readOnly = true)
     public List<NoticiaResponse> listar(CategoriaEnum categoria, UbicacionEnum ubicacion, String busqueda) {
         return noticiaViewJPA.filtrarNoticias(
@@ -47,6 +50,7 @@ public class NoticiaService {
     }
 
     /** Solo administradores. */
+    @CacheEvict(value = "noticias", allEntries = true)
     @Transactional
     public void crear(UsuarioAutenticado usuario, NoticiaRequest request) {
         exigirAdmin(usuario);
@@ -66,6 +70,7 @@ public class NoticiaService {
     }
 
     /** Solo administradores. */
+    @CacheEvict(value = "noticias", allEntries = true)
     @Transactional
     public void actualizar(UsuarioAutenticado usuario, Long idNoticia, NoticiaRequest request) {
         exigirAdmin(usuario);
@@ -86,6 +91,7 @@ public class NoticiaService {
     }
 
     /** Solo administradores. */
+    @CacheEvict(value = "noticias", allEntries = true)
     @Transactional
     public void eliminar(UsuarioAutenticado usuario, Long idNoticia) {
         exigirAdmin(usuario);
