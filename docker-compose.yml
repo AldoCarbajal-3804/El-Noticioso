@@ -46,3 +46,13 @@ services:
     expose:
       - "8000"
     restart: unless-stopped
+
+  scrapping:
+    build:
+      context: ./el-noticioso-scrapping
+      dockerfile: Dockerfile
+    image: el-noticioso-scrapping:latest
+    container_name: el_noticioso_scrapping_app
+    expose:
+      - "8090"
+    restart: unless-stopped
