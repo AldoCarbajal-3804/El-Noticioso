@@ -75,6 +75,16 @@
             <artifactId>spring-restdocs-mockmvc</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- Caché en memoria: noticias públicas (24 horas) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>3.3.1</version>
+        </dependency>
         <!-- Validación de JWT de Supabase (JwtService). Spring Boot no administra esta versión. -->
         <dependency>
             <groupId>com.nimbusds</groupId>
