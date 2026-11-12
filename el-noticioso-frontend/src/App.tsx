@@ -9,6 +9,8 @@ import { ButtonTheme } from '@/components/ui/ButtonTheme'
 import { useLogin } from '@/store/login'
 import NuevaContrasena from '@/components/popups/NuevaContrasena'
 import PerfilUsuario from '@/components/popups/PerfilUsuario'
+import { Routes, Route } from 'react-router'
+import Error404 from '@/layouts/404Error'
 
 function App() {
     const [isFooterVisible, setIsFooterVisible] = useState(false)
@@ -32,7 +34,13 @@ function App() {
         <>
             <Header />
             <Navbar />
-            <Body />
+            <Routes>
+                <Route path="/" element={<Body />} />
+                <Route path="/local" element={<Body />} />
+                <Route path="/regional" element={<Body />} />
+                <Route path="/nacional" element={<Body />} />
+                <Route path="*" element={<Error404 />} />
+            </Routes>
             <Footer />
             <NuevaContrasena />
             <PerfilUsuario />
