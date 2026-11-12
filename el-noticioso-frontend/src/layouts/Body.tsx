@@ -6,14 +6,14 @@ import { CardAside } from "@/components/news/CardAside";
 import { PropsAside } from "@/schemas/props/PropsAside";
 import type { Noticia } from "@/schemas/data/Noticias";
 import { SpinnerLoad } from "@/components/ui/SpinnerLoad";
-import ServiceNews from "@/services/apis-externals/ServiceNews";
+import ServiceExtras from "@/services/apis-externals/ServiceExtras";
 import NoticiaService from "@/services/apis-locals/NoticiaService";
 import useFetch from "@/hooks/useFetch";
 
 type AsideArticle = z.infer<typeof PropsAside>;
 
 // Definidas fuera del componente para que sean estables entre renders
-const obtenerNoticiasAside = (): Promise<AsideArticle[]> => ServiceNews().getNewsAside();
+const obtenerNoticiasAside = (): Promise<AsideArticle[]> => ServiceExtras().getExtrasAside();
 
 const obtenerNoticiasPrincipales = (): Promise<Noticia[]> => NoticiaService().getNoticias();
 
