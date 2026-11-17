@@ -33,8 +33,24 @@ FROM nginx:1.25-alpine AS production
 # (Nota: cambia 'dist' por 'build' si tu proyecto usa Create React App en lugar de Vite)
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# (Opcional) Copiar una configuración personalizada de Nginx si la tienes
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Configuración de Nginx para una SPA: cualquier ruta (/local, /nacional...) devuelve index.html
+COPY <<'EOF' /etc/nginx/conf.d/default.conf
+server {
+    listen 80;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /assets/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        try_files $uri =404;
+    }
+}
+EOF
 
 EXPOSE 80
 
