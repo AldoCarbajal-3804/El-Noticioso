@@ -1,26 +1,44 @@
-
 import { useEffect, useState } from 'react'
+import { Routes, Route, useLocation } from 'react-router'
 import './App.css'
 import Header from '@/layouts/Header'
 import Navbar from '@/layouts/Navbar'
 import Body from '@/layouts/Body'
 import Footer from '@/layouts/Footer'
+import Error404 from '@/layouts/404Error'
 import { ButtonTheme } from '@/components/ui/ButtonTheme'
 import { useLogin } from '@/store/login'
 import NuevaContrasena from '@/components/popups/NuevaContrasena'
 import PerfilUsuario from '@/components/popups/PerfilUsuario'
-import { Routes, Route } from 'react-router'
-import Error404 from '@/layouts/404Error'
+
+// Página completa de las rutas válidas: encabezado, navegación, contenido y pie
+function PaginaPrincipal() {
+    return (
+        <>
+            <Header />
+            <Navbar />
+            <Body />
+            <Footer />
+            <NuevaContrasena />
+            <PerfilUsuario />
+        </>
+    )
+}
 
 function App() {
     const [isFooterVisible, setIsFooterVisible] = useState(false)
+    const { pathname } = useLocation()
 
     // Restaura la sesión al cargar la app y escucha login/logout
     useEffect(() => useLogin.getState().inicializar(), [])
 
+    // Se busca el footer otra vez al cambiar de ruta, porque la página 404 no lo tiene
     useEffect(() => {
         const footer = document.getElementById('site-footer')
-        if (!footer) return
+        if (!footer) {
+            setIsFooterVisible(false)
+            return
+        }
 
         const observer = new IntersectionObserver(([entry]) => {
             setIsFooterVisible(entry.isIntersecting)
@@ -28,22 +46,18 @@ function App() {
 
         observer.observe(footer)
         return () => observer.disconnect()
-    }, [])
+    }, [pathname])
 
     return (
         <>
-            <Header />
-            <Navbar />
             <Routes>
-                <Route path="/" element={<Body />} />
-                <Route path="/local" element={<Body />} />
-                <Route path="/regional" element={<Body />} />
-                <Route path="/nacional" element={<Body />} />
+                <Route path="/" element={<PaginaPrincipal />} />
+                <Route path="/local" element={<PaginaPrincipal />} />
+                <Route path="/regional" element={<PaginaPrincipal />} />
+                <Route path="/nacional" element={<PaginaPrincipal />} />
+                <Route path="/internacional" element={<PaginaPrincipal />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
-            <Footer />
-            <NuevaContrasena />
-            <PerfilUsuario />
             <div
                 aria-hidden={isFooterVisible}
                 inert={isFooterVisible}
