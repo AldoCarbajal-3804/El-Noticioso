@@ -2,10 +2,11 @@ import menu from '@/assets/icons/menu.svg'
 import exit from '@/assets/icons/exit.svg'
 import { useState } from 'react'
 import { LinkNavbar } from '@/components/ui/LinkNavbar'
+import useRoute from '@/hooks/useRoute'
 
 export const NavbarMobile = () => {
 
-    const activeLink = window.location.pathname
+    const { pathname: activeLink } = useRoute()
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -39,7 +40,7 @@ export const NavbarMobile = () => {
                     <LinkNavbar href="/local" text="Local" isActive={activeLink === '/local'} />
                     <LinkNavbar href="/regional" text="Regional" isActive={activeLink === '/regional'} />
                     <LinkNavbar href="/nacional" text="Nacional" isActive={activeLink === '/nacional'} />
-                    <LinkNavbar href="/otros" text="Otros" isActive={activeLink === '/otros'} />
+                    <LinkNavbar href="/internacional" text="Internacional" isActive={activeLink === '/internacional'} />
                 </ul>
             </menu>
         </div>
