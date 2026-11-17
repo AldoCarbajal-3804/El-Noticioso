@@ -1,6 +1,7 @@
 import * as z from "zod"
 import { PropsNavbar } from "@/schemas/props/ui/PropsNavbar";
 import { useTheme } from "@/store/theme";
+import { Link } from "react-router";
 
 type Props = z.infer<typeof PropsNavbar>;
 
@@ -17,14 +18,14 @@ export const LinkNavbar = ({ href, text, onClick: onClick, isActive=false }: Pro
                     : 'text-second-light hover:bg-fifth hover:text-gray-300'
             }`}
         >
-            <a
-                href={href}
+            <Link
+                to={href}
                 onClick={onClick}
                 className="block"
                 aria-current={isActive ? 'page' : undefined}
             >
                 {text}
-            </a>
+            </Link>
         </li>
     )
 
