@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class NoticiaService {
     @Cacheable(value = "noticias", sync = true)
     @Transactional(readOnly = true)
     public List<NoticiaResponse> listar(CategoriaEnum categoria, UbicacionEnum ubicacion, String busqueda) {
-        return noticiaViewJPA.filtrarNoticias(
+        List<NoticiaResponse> todas = noticiaViewJPA.filtrarNoticias(
                         categoria == null ? null : categoria.name(),
                         ubicacion == null ? null : ubicacion.name(),
                         busqueda == null || busqueda.isBlank() ? null : busqueda.trim()
@@ -47,6 +49,11 @@ public class NoticiaService {
                 ))
                 .map(this::aRespuesta)
                 .toList();
+
+        // Muestra aleatoria de 6. Como este método está cacheado, la muestra dura lo mismo que la caché (24 h o hasta un cambio)
+        List<NoticiaResponse> muestra = new ArrayList<>(todas);
+        Collections.shuffle(muestra);
+        return muestra.stream().limit(6).toList();
     }
 
     /** Solo administradores. */
